@@ -1,0 +1,22 @@
+:root{--bg:#f6f3ec;--ink:#1a2233;--muted:#6b7280;--brand:#14532d;--accent:#b45309;--line:#e5ddd0;--hebrew-size:22px}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--ink)}
+.topbar{display:flex;justify-content:space-between;gap:16px;padding:14px 20px;background:#fff;border-bottom:2px solid var(--brand);position:sticky;top:0;z-index:10;flex-wrap:wrap}
+.brand{display:flex;gap:12px;align-items:center}.logo{font-family:'Frank Ruhl Libre',serif;font-size:30px;color:var(--brand);background:#eef7f0;padding:4px 12px;border-radius:10px}
+.brand h1{margin:0;font-size:22px;color:var(--brand)}.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.controls input{padding:9px 12px;border:1px solid var(--line);border-radius:10px;min-width:240px}.controls select,.controls button{padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.layout{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 78px)}
+#sidebar{background:#fff;border-right:1px solid var(--line);padding:14px;overflow:auto;max-height:calc(100vh - 78px);position:sticky;top:78px}
+.side-head{position:sticky;top:0;background:#fff;padding-bottom:10px}.progress{height:8px;background:#eee;border-radius:20px;overflow:hidden}#bar{height:100%;width:0;background:var(--brand)}.hint{color:var(--muted);font-size:12px}
+.lesson-item{width:100%;text-align:left;display:flex;gap:10px;align-items:center;padding:9px 10px;border:0;border-radius:10px;background:transparent;cursor:pointer}.lesson-item:hover{background:#eef7f0}.lesson-item.active{background:var(--brand);color:#fff}.lesson-item .num{font-weight:700;min-width:32px}.lesson-item .he{font-family:'Frank Ruhl Libre',serif;font-size:16px;margin-left:auto}
+#main{padding:22px;max-width:1080px;width:100%;margin:0 auto}.welcome{background:#fff;border-radius:16px;padding:22px;border:1px solid var(--line)}.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.card{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbfaf7}.card b{display:block;color:var(--brand)}.card span{color:var(--muted);font-size:13px}
+.toggles{display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:#fffbe6;padding:12px;border-radius:12px}.toggles label{cursor:pointer}.toggles button{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.lesson-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:end}.lesson-head h2{margin:0;font-size:28px;color:var(--brand)}.lesson-head .he-title{font-family:'Frank Ruhl Libre',serif;font-size:30px;color:var(--accent)}.lesson-head .sub{color:var(--muted)}
+.tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}.tab{padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:600}.tab.active{background:var(--brand);color:#fff}
+.page{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;overflow-x:auto}
+table{width:100%;border-collapse:collapse}th{background:var(--brand);color:#fff;text-align:left;padding:10px;position:sticky;top:0}td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top}td.he-cell{font-family:'Frank Ruhl Libre',serif;font-size:calc(var(--hebrew-size) + 2px);direction:rtl;text-align:right;white-space:nowrap}td.pron{font-style:italic;color:#334155}tr:hover td{background:#fbfaf7}
+.check{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;background:#fffbe6;padding:14px;border-radius:12px}
+.nav{display:flex;justify-content:space-between;margin-top:18px}.nav button{padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:600}
+body.dark{--bg:#111827;--ink:#f3f4f6;--muted:#9ca3af;--line:#374151}.dark .topbar,.dark #sidebar,.dark .welcome,.dark .page,.dark .controls button,.dark .controls select,.dark .tab,.dark .nav button,.dark .toggles button{background:#1f2937;color:#f3f4f6}.dark .card,.dark td.pron{background:#111827}
+body.hide-he .he-col{display:none}body.hide-trad .fr-col,body.hide-trad .mg-col{display:none}
+@media(max-width:820px){.layout{grid-template-columns:1fr}#sidebar{position:static;max-height:320px}.cards{grid-template-columns:1fr}}
+@media print{.topbar,.layout aside,.tabs,.nav,.controls,.toggles{display:none!important}.layout{display:block}#main{max-width:none}.page{border:0}}
