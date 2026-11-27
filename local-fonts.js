@@ -7,6 +7,89 @@
       .catch(function(err){ console.warn('SW tsy voasoratra:', err); });
   }
 
+  // Tehirizina misaraka ny lokon'ny soratra hebreo sy ny lohateny hebreo.
+  var SETTINGS_KEY='lilmod_settings';
+  var HEBREW_COLOR_KEY='lilmod_hebrew_text_color';
+  function readSettings(){
+    try { return JSON.parse(localStorage.getItem(SETTINGS_KEY)||'null')||{}; }
+    catch (_) { return {}; }
+  }
+  function readHebrewColor(settings){
+    var saved='';
+    try { saved=localStorage.getItem(HEBREW_COLOR_KEY)||''; } catch (_) {}
+    var color=saved||(settings.he&&settings.he.color)||'#b45309';
+    try { localStorage.setItem(HEBREW_COLOR_KEY,color); } catch (_) {}
+    return color;
+  }
+  var initialSettings=readSettings();
+  var independentHebrewColor=readHebrewColor(initialSettings);
+  function applyTitleAndTextColors(){
+    var settings=readSettings();
+    var titleColor=settings.accent||'#b45309';
+    document.documentElement.style.setProperty('--accent',titleColor);
+    document.documentElement.style.setProperty('--he-color',independentHebrewColor);
+  }
+  function keepHebrewColorIndependent(){
+    var settings=readSettings();
+    settings.he=settings.he||{};
+    settings.he.color=independentHebrewColor;
+    try { localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings)); } catch (_) {}
+  }
+  // Reconcile legacy saved settings and ensure the main lesson page starts with
+  // independent colors even if an older settings screen had copied accent to he.color.
+  if(initialSettings.he){
+    initialSettings.he.color=independentHebrewColor;
+    try { localStorage.setItem(SETTINGS_KEY,JSON.stringify(initialSettings)); } catch (_) {}
+  }
+  applyTitleAndTextColors();
+
+  var colorStyle=document.createElement('style');
+  colorStyle.textContent='.lesson-head .he-title,.result-card .rc-he-title{color:var(--accent)!important}';
+  document.head.appendChild(colorStyle);
+
+  // The settings page's legacy accent handler also writes to S.he.color.
+  // Preserve the independently saved Hebrew body color after that handler runs.
+  function handleColorChange(event){
+    var target=event.target;
+    if(!target || !target.id) return;
+    if(target.id==='color-he'){
+      independentHebrewColor=target.value;
+      try { localStorage.setItem(HEBREW_COLOR_KEY,independentHebrewColor); } catch (_) {}
+      document.documentElement.style.setProperty('--he-color',independentHebrewColor);
+    } else if(target.id==='accentColor'){
+      applyTitleAndTextColors();
+    }
+  }
+  document.addEventListener('input',handleColorChange);
+  document.addEventListener('change',handleColorChange);
+  document.addEventListener('click',function(event){
+    if(event.target && (event.target.id==='saveBtn' || event.target.closest('#saveBtn'))){
+      // Let the settings page's own click handler save first, then restore he.color.
+      setTimeout(keepHebrewColorIndependent,0);
+    }
+  });
+
+  // Search result cards use the same class for Hebrew content and lesson titles;
+  // mark title-only cards so they use the separate title color.
+  function markHebrewTitleCards(root){
+    var cards=[];
+    if(root && root.nodeType===1 && root.matches('.result-card')) cards.push(root);
+    if(root && root.querySelectorAll) cards=cards.concat(Array.prototype.slice.call(root.querySelectorAll('.result-card')));
+    cards.forEach(function(card){
+      var meta=card.querySelector('.rc-meta');
+      var hebrew=card.querySelector('.rc-he');
+      if(meta && hebrew && meta.textContent.indexOf('Lohatenin')>=0) hebrew.classList.add('rc-he-title');
+    });
+  }
+  if(document.body){
+    markHebrewTitleCards(document.body);
+    new MutationObserver(function(records){
+      records.forEach(function(record){
+        record.addedNodes.forEach(function(node){ if(node.nodeType===1) markHebrewTitleCards(node); });
+      });
+    }).observe(document.body,{childList:true,subtree:true});
+  }
+
   var DEFAULT_FONTS=[
     {file:'HebrewFonts/Ezra SIL.ttf', name:'Ezra SIL', kind:'he'},
     {file:'HebrewFonts/Playpen Variable.ttf', name:'Playpen Variable', kind:'he'},

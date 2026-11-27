@@ -1,5 +1,5 @@
 /* Lilmod PWA — Service Worker. Ampitomboy VERSION isaky ny fanovana. */
-const VERSION = 'lilmod-v2';
+const VERSION = 'lilmod-v3';
 const CORE = [
   './', './index.html', './tefy.html', './offline.html',
   './style.css', './script.js', './search.js', './local-fonts.js', './register-sw.js',
