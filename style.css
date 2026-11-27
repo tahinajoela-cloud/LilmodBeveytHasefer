@@ -1,0 +1,270 @@
+
+/* ===== Lilmod A1 — CSS madio ===== */
+:root{--bg:#f6f3ec;--ink:#1a2233;--muted:#6b7280;--brand:#14532d;--accent:#b45309;--line:#e5ddd0;--card:#ffffff;--soft:#fbfaf7;--warn:#fffbe6;--hebrew-size:24px;--base-size:15px;--radius:16px;--font-general:Inter,system-ui,sans-serif;--font-hebrew:'Frank Ruhl Libre','Ezra SIL',serif;--he-color:#b45309;--pron-color:#334155;--fr-color:#1a2233;--mg-color:#1a2233;--he-style:normal;--he-weight:400;--pron-style:italic;--pron-weight:400;--fr-style:normal;--fr-weight:400;--mg-style:normal;--mg-weight:400;--he-size:24px;--pron-size:15px;--fr-size:15px;--mg-size:15px;--font-pron:Inter,system-ui,sans-serif;--font-fr:Inter,system-ui,sans-serif;--font-mg:Inter,system-ui,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--font-general);background:var(--bg);color:var(--ink);font-size:var(--base-size);line-height:1.55}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--brand)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.menu-btn{display:none}
+.drawer-overlay{display:none}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 20px;background:var(--card);border-bottom:2px solid var(--brand);position:sticky;top:0;z-index:20;flex-wrap:wrap}
+.brand{display:flex;gap:12px;align-items:center;min-width:0;flex:1 1 auto}
+.logo{font-family:var(--font-hebrew);font-size:30px;color:var(--brand);background:#eef7f0;padding:4px 12px;border-radius:10px;flex:none}
+.brand h1{margin:0;font-size:22px;color:var(--brand);line-height:1.2}
+.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;flex:1 1 480px;justify-content:flex-end}
+.controls input{padding:10px 12px;border:1px solid var(--line);border-radius:10px;min-width:240px;flex:1 1 240px;background:var(--card);color:inherit}
+.controls input:focus,.controls select:focus,.controls button:focus-visible,.tab:focus-visible,.lesson-item:focus-visible,.result-card:focus-visible{outline:3px solid rgba(20,83,45,.35);outline-offset:1px}
+.controls select,.controls button{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:inherit;min-height:42px}
+.controls button:hover,.controls select:hover{border-color:var(--brand)}
+.settings-link{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--brand);color:#fff;text-decoration:none;font-weight:700;min-height:42px}
+.settings-link:hover{background:#0f3d22}
+.layout{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:calc(100vh - 78px);align-items:start}
+#sidebar{background:var(--card);border-right:1px solid var(--line);padding:14px;overflow:auto;max-height:calc(100vh - 78px);position:sticky;top:78px}
+.side-head{position:sticky;top:-15px;background:var(--card);padding-bottom:10px;z-index:1}
+#count{font-weight:700}
+.progress{height:8px;background:#eee;border-radius:20px;overflow:hidden;margin-top:6px}
+#bar{height:100%;width:0;background:var(--brand);transition:width .3s}
+.hint,.tip,.muted{color:var(--muted);font-size:13px}
+.lesson-item{width:100%;text-align:left;display:flex;gap:10px;align-items:center;padding:10px;border:0;border-radius:10px;background:transparent;color:inherit}
+.lesson-item:hover{background:#eef7f0}
+.lesson-item.active{background:var(--brand);color:#fff}
+.lesson-item .num{font-weight:700;min-width:32px;flex:none}
+#main{padding:22px;max-width:1080px;width:100%;margin:0 auto;min-width:0}
+.welcome{background:var(--card);border-radius:var(--radius);padding:22px;border:1px solid var(--line)}
+.welcome h2{margin:0 0 8px;color:var(--brand)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.card{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--soft)}
+.card b{display:block;color:var(--brand)}
+.card span{color:var(--muted);font-size:13px}
+.toggles{display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:var(--warn);padding:12px;border-radius:12px}
+.toggles label{cursor:pointer}
+.toggles button{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.lesson-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:end}
+.lesson-head h2{margin:0;font-size:28px;color:var(--brand)}
+.lesson-head .he-title{font-family:var(--font-hebrew);font-size:30px;color:var(--he-color);direction:rtl;font-style:var(--he-style);font-weight:var(--he-weight)}
+.lesson-head .sub{color:var(--muted);margin:4px 0 0}
+.tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+.tab{padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600;color:inherit}
+.tab.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.page{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;overflow-x:auto}
+.page h3{color:var(--brand);margin:0 0 12px}
+table{width:100%;border-collapse:collapse}
+th{background:var(--brand);color:#fff;text-align:left;padding:10px}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle}
+td.he-cell{font-family:var(--font-hebrew);font-size:var(--he-size);direction:rtl;text-align:right;white-space:nowrap;line-height:1.6;color:var(--he-color);font-style:var(--he-style);font-weight:var(--he-weight)}
+td.pron{font-family:var(--font-pron);font-size:var(--pron-size);font-style:var(--pron-style);font-weight:var(--pron-weight);color:var(--pron-color)}
+td.col-fr{font-family:var(--font-fr);font-size:var(--fr-size);font-style:var(--fr-style);font-weight:var(--fr-weight);color:var(--fr-color)}
+td.col-mg{font-family:var(--font-mg);font-size:var(--mg-size);font-style:var(--mg-style);font-weight:var(--mg-weight);color:var(--mg-color)}
+tr:hover td{background:var(--soft)}
+.check{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;background:var(--warn);padding:14px;border-radius:12px;align-items:center}
+.nav{display:flex;justify-content:space-between;margin-top:18px;gap:12px}
+.nav button{padding:11px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600;color:inherit}
+.search-results{display:flex;flex-direction:column;gap:12px}
+.search-results[hidden]{display:none!important}
+.search-results-head{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.search-results-head h2{margin:0 0 4px;color:var(--brand);font-size:22px}
+.search-results-head p{margin:0;color:var(--muted);font-size:14px}
+.result-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center;width:100%}
+.result-card:hover{border-color:var(--brand);box-shadow:0 4px 18px rgba(20,83,45,.12)}
+.result-card .rc-he{font-family:var(--font-hebrew);font-size:var(--he-size);direction:rtl;color:var(--he-color);line-height:1.6;font-style:var(--he-style);font-weight:var(--he-weight)}
+.result-card .rc-pron{font-family:var(--font-pron);font-size:var(--pron-size);font-style:var(--pron-style);font-weight:var(--pron-weight);color:var(--pron-color);margin-top:6px}
+.result-card .rc-fr{font-family:var(--font-fr);font-size:var(--fr-size);font-style:var(--fr-style);font-weight:var(--fr-weight);color:var(--fr-color);margin-top:4px}
+.result-card .rc-mg{font-family:var(--font-mg);font-size:var(--mg-size);font-style:var(--mg-style);font-weight:var(--mg-weight);color:var(--mg-color);margin-top:4px}
+.result-card .rc-meta{margin-top:10px;font-size:13px;color:var(--muted)}
+body.dark{--bg:#111827;--ink:#f3f4f6;--muted:#9ca3af;--line:#374151;--card:#1f2937;--soft:#111827;--warn:#1f2937}
+.dark .controls input,.dark .controls button,.dark .controls select,.dark .tab,.dark .nav button,.dark .toggles button{background:#1f2937;color:#f3f4f6}
+.dark .lesson-item:hover{background:#374151}
+body.hide-he .he-col{display:none}
+body.hide-trad .fr-col,body.hide-trad .mg-col{display:none}
+.tefy-page{max-width:860px;margin:0 auto;padding:22px}
+.tefy-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.tefy-top h1{margin:0;color:var(--brand);font-size:28px}
+.tefy-top p{margin:4px 0 0;color:var(--muted)}
+.back-link{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:inherit;text-decoration:none;font-weight:700}
+.tefy-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+.tefy-card h2{margin:0 0 4px;color:var(--brand);font-size:20px}
+.tefy-card>p{margin:0 0 14px;color:var(--muted);font-size:14px}
+.tefy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:14px}
+.field input,.field select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:inherit;min-height:44px}
+.field input[type=color]{padding:4px;height:44px;cursor:pointer}
+.field input[type=range]{padding:0}
+.field .range-val{font-weight:700;color:var(--brand)}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg label{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);cursor:pointer;font-weight:600}
+.seg label:has(input:checked){background:var(--brand);color:#fff;border-color:var(--brand)}
+.seg input{accent-color:var(--brand)}
+.tefy-preview{border:1px dashed var(--line);border-radius:14px;padding:16px;text-align:center;background:var(--soft)}
+.tefy-preview .pv-he{font-family:var(--font-hebrew);font-size:var(--he-size);direction:rtl;color:var(--he-color);font-style:var(--he-style);font-weight:var(--he-weight);line-height:1.6}
+.tefy-preview .pv-pron{font-family:var(--font-pron);font-size:var(--pron-size);font-style:var(--pron-style);font-weight:var(--pron-weight);color:var(--pron-color);margin-top:6px}
+.tefy-preview .pv-fr{font-family:var(--font-fr);font-size:var(--fr-size);font-style:var(--fr-style);font-weight:var(--fr-weight);color:var(--fr-color);margin-top:4px}
+.tefy-preview .pv-mg{font-family:var(--font-mg);font-size:var(--mg-size);font-style:var(--mg-style);font-weight:var(--mg-weight);color:var(--mg-color);margin-top:4px}
+.tefy-actions{position:sticky;bottom:0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:8px}
+.btn-save{flex:1 1 200px;padding:13px 18px;border:0;border-radius:12px;background:var(--brand);color:#fff;font-weight:800;font-size:16px}
+.btn-reset{padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:inherit;font-weight:700}
+.save-status{font-weight:700;color:var(--brand);min-height:22px}
+.save-status:empty{display:none}
+.note{color:var(--muted);font-size:13px}
+/* ===== MENU / TIROIR — miankina amin'ny class is-mobile ===== */
+body.is-mobile .menu-btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 13px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:inherit;font-weight:700;font-size:19px;flex:none;min-height:44px;min-width:44px}
+body.is-mobile.drawer-open .menu-btn{background:var(--brand);color:#fff;border-color:var(--brand)}
+body.is-mobile .layout{display:block;min-height:0}
+body.is-mobile #sidebar{position:fixed;top:0;left:0;bottom:0;width:min(86vw,340px);max-height:none;z-index:60;transform:translateX(-105%);transition:transform .25s ease;box-shadow:0 0 30px rgba(0,0,0,.3);visibility:hidden}
+body.is-mobile.drawer-open #sidebar{transform:translateX(0);visibility:visible}
+body.is-mobile.drawer-open .drawer-overlay{display:block;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:55}
+body.is-mobile.drawer-open{overflow:hidden}
+
+@media (max-width:820px){
+
+.topbar{position:sticky;top:0;z-index:30}
+.brand{flex:1 1 auto}
+.brand h1{font-size:18px}.brand p{font-size:11px}.logo{font-size:24px;padding:2px 8px}
+.controls{flex:1 1 100%;justify-content:stretch}
+.controls input{flex:1 1 100%;min-width:0;order:-1;font-size:16px;padding:11px 12px}
+.controls button,.controls select,.settings-link{flex:1 1 auto;min-height:44px;font-size:14px}
+#main{padding:12px}
+.lesson-head{text-align:center;justify-content:center;align-items:center}
+.lesson-head>div{width:100%}
+.lesson-head h2{font-size:22px}
+.lesson-head .he-title{font-size:24px}
+.tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.tab{white-space:nowrap;padding:9px 13px;font-size:14px;flex:none}
+.page{padding:12px;overflow-x:hidden}
+.cards{grid-template-columns:1fr 1fr;gap:8px}
+.card{padding:10px;font-size:14px}
+.toggles{gap:8px;font-size:14px}
+.page table,.page thead,.page tbody,.page th,.page td,.page tr{display:block;width:100%}
+.page thead{display:none!important}
+.page table{border:0}
+.page tbody tr{border:1px solid var(--line);border-radius:16px;margin-bottom:12px;padding:14px 12px;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px}
+.page tbody tr:hover td{background:transparent}
+.page tbody td{border:0;padding:4px 0;text-align:center!important;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.page tbody td::before{display:none!important;content:none!important}
+.page td.he-cell{white-space:normal;font-size:var(--he-size);text-align:center!important}
+.page td.pron{font-size:var(--pron-size)}
+.check{flex-direction:column;gap:8px;align-items:stretch}
+.nav{position:sticky;bottom:0;background:var(--bg);padding:10px 0;gap:10px;z-index:5}
+.nav button{flex:1;padding:12px}
+.lesson-item{padding:12px 10px;font-size:15px}
+.search-results{gap:10px}
+.result-card{padding:16px 12px}
+.tefy-page{padding:12px}
+.tefy-grid{grid-template-columns:1fr}
+.tefy-actions{position:sticky;bottom:0;bottom:env(safe-area-inset-bottom);z-index:50;box-shadow:0 -4px 18px rgba(0,0,0,.12)}
+.btn-save{flex:1 1 100%}
+
+}
+
+/* Fomba finday an-tery amin'ny solosaina */
+body.mobile-view .topbar{position:sticky;top:0;z-index:30}
+body.mobile-view .brand{flex:1 1 auto}
+body.mobile-view .brand h1{font-size:18px}.brand p{font-size:11px}.logo{font-size:24px;padding:2px 8px}
+body.mobile-view .controls{flex:1 1 100%;justify-content:stretch}
+body.mobile-view .controls input{flex:1 1 100%;min-width:0;order:-1;font-size:16px;padding:11px 12px}
+body.mobile-view .controls button, body.mobile-view .controls select, body.mobile-view .settings-link{flex:1 1 auto;min-height:44px;font-size:14px}
+body.mobile-view #main{padding:12px}
+body.mobile-view .lesson-head{text-align:center;justify-content:center;align-items:center}
+body.mobile-view .lesson-head>div{width:100%}
+body.mobile-view .lesson-head h2{font-size:22px}
+body.mobile-view .lesson-head .he-title{font-size:24px}
+body.mobile-view .tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+body.mobile-view .tab{white-space:nowrap;padding:9px 13px;font-size:14px;flex:none}
+body.mobile-view .page{padding:12px;overflow-x:hidden}
+body.mobile-view .cards{grid-template-columns:1fr 1fr;gap:8px}
+body.mobile-view .card{padding:10px;font-size:14px}
+body.mobile-view .toggles{gap:8px;font-size:14px}
+body.mobile-view .page table, body.mobile-view .page thead, body.mobile-view .page tbody, body.mobile-view .page th, body.mobile-view .page td, body.mobile-view .page tr{display:block;width:100%}
+body.mobile-view .page thead{display:none!important}
+body.mobile-view .page table{border:0}
+body.mobile-view .page tbody tr{border:1px solid var(--line);border-radius:16px;margin-bottom:12px;padding:14px 12px;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px}
+body.mobile-view .page tbody tr:hover td{background:transparent}
+body.mobile-view .page tbody td{border:0;padding:4px 0;text-align:center!important;display:flex;flex-direction:column;align-items:center;justify-content:center}
+body.mobile-view .page tbody td::before{display:none!important;content:none!important}
+body.mobile-view .page td.he-cell{white-space:normal;font-size:var(--he-size);text-align:center!important}
+body.mobile-view .page td.pron{font-size:var(--pron-size)}
+body.mobile-view .check{flex-direction:column;gap:8px;align-items:stretch}
+body.mobile-view .nav{position:sticky;bottom:0;background:var(--bg);padding:10px 0;gap:10px;z-index:5}
+body.mobile-view .nav button{flex:1;padding:12px}
+body.mobile-view .lesson-item{padding:12px 10px;font-size:15px}
+body.mobile-view .search-results{gap:10px}
+body.mobile-view .result-card{padding:16px 12px}
+body.mobile-view .tefy-page{padding:12px}
+body.mobile-view .tefy-grid{grid-template-columns:1fr}
+body.mobile-view .tefy-actions{position:sticky;bottom:0;bottom:env(safe-area-inset-bottom);z-index:50;box-shadow:0 -4px 18px rgba(0,0,0,.12)}
+body.mobile-view .btn-save{flex:1 1 100%}
+
+@media (max-width:420px){
+  .cards{grid-template-columns:1fr}
+  .brand p{display:none}
+  body.mobile-view .cards{grid-template-columns:1fr}
+  body.mobile-view .brand p{display:none}
+}
+@media print{.topbar,.menu-btn,.layout aside,.tabs,.nav,.controls,.toggles{display:none!important}.layout{display:block}#main{max-width:none}.page{border:0}}
+
+/* Lisitry ny fanehoan-tsoratra voatahiry */
+.font-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.font-list label{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600}
+.font-list label:has(input:checked){border-color:var(--brand);background:#eef7f0;box-shadow:0 0 0 1px var(--brand) inset}
+.dark .font-list label:has(input:checked){background:#1f2937}
+.font-list input{accent-color:var(--brand);flex:none}
+.font-list .font-sample{font-size:18px}
+.font-list .font-sample.he{font-size:22px;direction:rtl}
+.font-library{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.font-lib-group{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--soft)}
+.font-lib-group h3{margin:0 0 8px;font-size:15px;color:var(--brand)}
+.font-lib-group ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.font-lib-group li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.font-lib-group .font-sample{font-size:18px}
+.font-lib-group .font-sample.he{font-size:22px;direction:rtl}
+.btn-del{padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:inherit;font-weight:700;cursor:pointer}
+.btn-del:hover{border-color:#b91c1c;color:#b91c1c}
+
+/* Misafidy fanehoan-tsoratra — pop-up kely eo ambany */
+.font-picker{position:relative}
+.font-picker-btn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:inherit;font-weight:600;text-align:left;min-height:44px;cursor:pointer}
+.font-picker-btn:hover{border-color:var(--brand)}
+.font-picker-btn .font-sample{font-size:18px;flex:none}
+.font-picker-btn .font-sample.he{font-size:22px;direction:rtl}
+.font-picker-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.font-picker-arrow{flex:none;color:var(--muted)}
+.font-popup{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:40;display:flex;flex-direction:column;gap:4px;max-height:240px;overflow:auto;padding:6px;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:0 12px 30px rgba(0,0,0,.15)}
+.font-popup[hidden]{display:none!important}
+.font-popup-item{display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border:0;border-radius:10px;background:transparent;color:inherit;text-align:left;cursor:pointer;font-weight:600}
+.font-popup-item:hover{background:#eef7f0}
+.dark .font-popup-item:hover{background:#374151}
+.font-popup-item .font-sample{font-size:18px;flex:none}
+.font-popup-item .font-sample.he{font-size:22px;direction:rtl}
+.font-popup-item b{margin-left:auto;color:var(--brand)}
+
+/* Lisitra tsotra: anaran'ny fanehoan-tsoratra voatahiry fotsiny */
+.font-names{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.font-names li{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-weight:600}
+.font-names .btn-del{padding:0 4px;border:0;background:transparent;color:var(--muted);font-size:16px;line-height:1}
+.font-names .btn-del:hover{color:#b91c1c}
+
+/* ===== Tefy amin'ny mobile: popup fanehoan-tsoratra + Save hita foana ===== */
+@media (max-width:820px){
+  .tefy-page{padding-bottom:110px}
+  .font-picker{position:static}
+  .font-popup{position:fixed;left:12px;right:12px;top:auto;bottom:calc(92px + env(safe-area-inset-bottom));max-height:46vh;z-index:80}
+  .field input,.field select,.seg label,.font-picker-btn{min-height:48px}
+  .field input[type=range]{min-height:44px;touch-action:pan-x}
+  .field input[type=color]{min-height:48px}
+  .seg label{flex:1 1 44%}
+  input,select,button{font-size:16px}
+}
+html{-webkit-tap-highlight-color:transparent}
+button,input,select,label{ -webkit-tap-highlight-color:transparent; touch-action:manipulation }
+
+/* ===== PWA : banner mise à jour / offline ===== */
+.update-banner{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;background:#14532d;color:#fff;padding:10px 14px;font-size:14px;text-align:center}
+.update-banner[hidden]{display:none!important}
+.update-banner button{padding:9px 16px;border-radius:999px;border:0;font-weight:700;cursor:pointer;min-height:40px}
+#updateBtn{background:#fff;color:#14532d}
+#updateLaterBtn{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6)}
+.update-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.update-row button{padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:inherit;font-weight:700;cursor:pointer}

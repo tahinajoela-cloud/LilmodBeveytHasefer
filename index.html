@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="mg"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lilmod Beveyt Hasefer — A1</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#14532d">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Lilmod A1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head><body>
+<div id="drawerOverlay" class="drawer-overlay"></div><div id="updateBanner" class="update-banner" hidden><span id="updateStatus">Mijery mise à jour…</span><button id="updateBtn" type="button">↻ Havaozy</button><button id="updateLaterBtn" type="button">Aoriana</button></div><header class="topbar"><button id="menuBtn" class="menu-btn" type="button" aria-label="Sokafy ny lisitry ny lesona" aria-controls="sidebar" aria-expanded="false"><span class="menu-icon" aria-hidden="true">☰</span></button><div class="brand"><span class="logo">לִבָּה</span><div><h1>Lilmod Beveyt Hasefer — A1</h1><p>Hebreo • Fanononana • Frantsay • Malagasy</p></div></div>
+<div class="controls"><input id="search" type="search" placeholder="Mikaroka teny anaty fampiharana ..." autocomplete="off"><button id="fontMinus" type="button" title="Hampihena ny soratra">A-</button><button id="fontPlus" type="button" title="Hampitombo ny soratra">A+</button><label class="sr-only" for="fontSize">Haben-tsoratra</label><select id="fontSize"><option value="12">12</option><option value="14">14</option><option value="16">16</option><option value="18">18</option><option value="22">22</option><option value="24" selected>24</option><option value="26">26</option><option value="28">28</option><option value="36">36</option><option value="48">48</option></select><button id="toggleDark" type="button">🌙 Alon-doko matroka</button><button id="printBtn" type="button">🖨 Pirinty</button><button id="mobileBtn" type="button" title="Manery ny fomba finday na dia amin'ny solosaina aza">📱 Fomba finday</button><a id="settingsLink" class="settings-link" href="tefy.html">⚙ Tefy</a></div></header>
+<div class="layout"><aside id="sidebar"><div class="side-head"><span id="count"></span><div class="progress"><div id="bar"></div></div><p id="progressTxt"></p><p class="hint">Mariho any amin'ny farany lesona mba ahitanao eto ny isan'ireo lesona efa nianaranao.</p></div><div id="lessonList"></div></aside>
+<main id="main"><div id="welcome" class="welcome"><h2>Tongasoa</h2><p>Mifidiana lesona eo ankavia. Ny andalana tsirairay dia manana tsanganana 4: <b>fanononana</b> | <b>hebreo misy niqqud</b> | <b>frantsay</b> | <b>malagasy</b>.</p>
+<div class="cards"><div class="card"><b>Fehezanteny</b><span>Fehezanteny 20 isaky ny lesona — hitenenana</span></div><div class="card"><b>Rakiteny</b><span>Teny 20 isaky ny lesona — hotadidiana</span></div><div class="card"><b>Fomba famerenana</b><span>Afenoy ny hebreo na ny fandikana, dia vinanio</span></div><div class="card"><b>Fandrosoana</b><span>Tsindrio ny lesona nianarana — voatahiry</span></div></div>
+<div class="toggles"><label><input type="checkbox" id="colPron" checked> Fanononana</label><label><input type="checkbox" id="colHe" checked> Hebreo</label><label><input type="checkbox" id="colFr" checked> Frantsay</label><label><input type="checkbox" id="colMg" checked> Malagasy</label><button id="hideHe">🙈 Afenoy ny Hebreo (famerenana)</button><button id="hideTrad">🙈 Afenoy ny fandikana</button><button id="showAll">👁 Asehoy daholo</button></div>
+<div class="update-row"><button id="checkUpdateBtn" type="button">↻ Jereo ny mise à jour</button><span id="pwaStatus" class="note">Offline: sokafy indray mandeha amin'ny internet, dia miasa tsy misy internet avy eo.</span></div>
+<p class="tip">Lesona 55 (Manao tsipelina teny): tsy nanana style Titre tao amin'ny Word izy — notadiavina ka nosarahina. Jereo ny <b>AUDIT.md</b>.</p></div><div id="searchResults" class="search-results" hidden></div><div id="lessonView"></div></main></div>
+<script src="script.js"></script>
+<script src="pwa.js"></script></body></html>
