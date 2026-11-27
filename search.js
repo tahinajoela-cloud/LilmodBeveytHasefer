@@ -88,9 +88,9 @@
       if(titleMatched && !rowMatched) cards.push(makeLessonTitleCard(lesson));
     });
 
-    var heading='<div class="search-results-head"><h2>Valin’ny fikarohana: '+cards.length+'</h2><p>“'+escapeHTML(rawQuery)+'”</p></div>';
-    var hint=cards.length?'<p class="muted search-results-hint">Tsindrio ny karatra raha hijery ny lesona manontolo nahitana ilay teny.</p>':'';
-    resultsBox.innerHTML=heading+hint+(cards.length?cards.join(''):'<p class="muted">Tsy nahitana valiny.</p>');
+    var hint=cards.length?'<p class="search-results-hint">Tsindrio ny karatra raha hijery ny lesona manontolo nahitana ilay teny.</p>':'';
+    var heading='<div class="search-results-head"><h2>Valin’ny fikarohana: '+cards.length+'</h2>'+hint+'<p>“'+escapeHTML(rawQuery)+'”</p></div>';
+    resultsBox.innerHTML=heading+(cards.length?cards.join(''):'<p class="muted">Tsy nahitana valiny.</p>');
     resultsBox.hidden=false;
     var lessonView=document.getElementById('lessonView');
     var welcome=document.getElementById('welcome');
