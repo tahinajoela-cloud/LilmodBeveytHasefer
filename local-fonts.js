@@ -1,5 +1,12 @@
 /* Lilmod LOCAL — Fonts defaults. */
 (function(){
+  // Ilaina amin'ny index.html sy tefy.html ny local-fonts.js; ampiasaina koa
+  // izy io mba hisoratra anarana foana ny Service Worker amin'ireo pejy roa.
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js', { scope: './' })
+      .catch(function(err){ console.warn('SW tsy voasoratra:', err); });
+  }
+
   var DEFAULT_FONTS=[
     {file:'HebrewFonts/Ezra SIL.ttf', name:'Ezra SIL', kind:'he'},
     {file:'HebrewFonts/Playpen Variable.ttf', name:'Playpen Variable', kind:'he'},
