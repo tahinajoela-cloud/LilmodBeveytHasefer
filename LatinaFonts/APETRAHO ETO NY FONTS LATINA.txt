@@ -1,0 +1,7 @@
+Apetraho ETO (miaraka amin'ny index.html / LatinaFonts/) ny rakitra .ttf-nao, amin'ireto anarana ireto marina:
+- RobotoCondensed-Light.ttf
+- Pepetua.ttf
+- Georgia.ttf
+- Cambria.ttf
+
+Tsy mila ovaina ny anarana. Sokafy ny index.html dia efa hita avy hatrany izy ireo ao amin'ny pop-up Misafidy fanehoan-tsoratra (Fanononana / Frantsay / Malagasy).

@@ -1,0 +1,9 @@
+Apetraho ETO (miaraka amin'ny index.html / HebrewFonts/) ny rakitra .ttf-nao, amin'ireto anarana ireto marina:
+- Ezra SIL.ttf
+- Playpen Variable.ttf
+- David.ttf
+- Lashon Qodesh.ttf
+- Lashon Megilah.ttf
+- Lashon Pictography.ttf
+
+Tsy mila ovaina ny anarana. Sokafy ny index.html dia efa hita avy hatrany izy ireo ao amin'ny pop-up Misafidy fanehoan-tsoratra (Hebreo).
