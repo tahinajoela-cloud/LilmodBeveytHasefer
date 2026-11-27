@@ -1,60 +1,27 @@
-# Lilmod — Version PWA ho an'ny GitHub Pages
+# Lilmod — PWA offline sy fanavaozana
 
-## Inona no ao anaty ity dossier ity (fanampiny fotsiny)
-- `manifest.json` — VAOVAO (manolo ny taloha): icons 192/512 + maskable, `start_url: ./index.html`, `scope: ./`
-- `sw.js` — Service Worker: cache ny app + fonts (HebrewFonts/, LatinaFonts/) rehefa voasokatra voalohany
-- `register-sw.js` — fisoratana anarana ny SW
-- `offline.html` — pejy aseho rehefa tsy misy connexion
-- `icons/icon-*.png` — icons avy amin'ny logo BS (manga = any, fotsy eo ambony maitso = maskable)
-- `Logo.png` / `Logo-white.png` / `Splash.png` — avy amin'ny logo BS nalefa (Logo-white: BS fotsy, mangarahara)
-- `.nojekyll` — TSY MAINTSY ao amin'ny root, raha tsy izany dia tsy mandeha ny dossiers manomboka amin'ny `_` sy ny rakitra sasany ao amin'ny GitHub Pages
+## Fomba fiasan'ny offline
+Ny app dia natao hiasa offline amin'ny navigateur na amin'ny APK wrapper izay mampiditra ilay tranonkala HTTPS. Rehefa misokatra voalohany **misy connexion** ilay app, ny Service Worker dia mitahiry mialoha ny pejy sy rakitra fototra rehetra, anisan'izany ny pejin'ny lesona sy ny fonts rehetra. Rehefa vita ilay fametrahana/cache dia afaka sokafana tsy misy connexion.
 
-## Fichier efa misy anao, TSY OVANA
-`index.html`, `tefy.html`, `style.css`, `script.js`, `local-fonts.js`, `HebrewFonts/`, `LatinaFonts/`, `logos/`
-Ny defaults fonts sy ny anaran'ny dossiers dia efa ao anaty `local-fonts.js` (`HebrewFonts/...`, `LatinaFonts/...`) — tsy kitihina.
-Ny anaran'ny logo (`Logo.png`, `Splash.png`) dia efa ao anaty `index.html` / `tefy.html` — tsy kitihina.
+- Sokafy amin'ny connexion ilay app ary avelao ho vita ny chargement voalohany, anisan'izany ny fonts.
+- Aza akatona na vonoina ny connexion mandra-pahavitan'ny download/cache voalohany.
+- Ny lesona rehetra dia ao anatin'ny `script.js`, ka tsy mila API na fangatahana internet isaky ny lesona.
+- Ny safidy sy fandrosoana dia tehirizina eo an-toerana amin'ny navigateur; ny fonts nampidirin'ny mpampiasa dia tehirizina ao amin'ny IndexedDB.
+- Ny Google Fonts ivelany dia mety tsy ho hita offline; mampiasa fonts eo an-toerana/system fallback kosa ny app.
 
-## Dingana 1 — Apetraho ao amin'ny dossier efa misy anao
-Adikao daholo ny ao anatin'ity dossier `pwa-github` ity, **atao overwrite** ny `manifest.json`, `Logo.png`, `Logo-white.png`, `Splash.png` taloha.
+## Fanavaozana
+Ny Service Worker dia manamarina ny `sw.js` rehefa manomboka ny app sy rehefa averina eo aloha. Isaky ny misy fanovana lehibe amin'ny rakitra web/cache, ampitomboy ny `VERSION` ao amin'ny `sw.js` (ohatra `lilmod-v4` ho `lilmod-v5`). Rehefa mahazo connexion indray ilay app, dia misintona sy mametraka ny cache vaovao izy, avy eo manolo ny cache taloha. Ny fanavaozana dia miseho rehefa averina sokafana na averina eo aloha ilay app; mety mila averina sokafana indray mandeha raha vao avy namoaka fanovana.
 
-## Dingana 2 — Ampio andalana 1 isaky ny pejy (ilay hany fanovana amin'ny HTML)
-Ao amin'ny `index.html` SY `tefy.html`, eo alohan'ny `</body>`:
-```html
-<script src="register-sw.js"></script>
-```
-Ohatra ao amin'ny `index.html`:
-```html
-<script src="local-fonts.js"></script>
-<script src="script.js"></script>
-<script src="register-sw.js"></script>
-</body></html>
-```
-Ao amin'ny `tefy.html` dia apetraho aorian'ny `<script>` farany, alohan'ny `</body>` ihany koa.
+## Fepetra amin'ny Website-to-App / APK Builder
+- Ataovy URL HTTPS marina an'ny GitHub Pages no sokafan'ilay APK (fa tsy preview na URL miovaova).
+- Avelao hiasa ny service workers, JavaScript, cookies/storage ary ny Cache API ao amin'ny WebView.
+- Sokafy indray mandeha amin'ny Internet ilay APK aorian'ny fametrahana ary andraso ho vita ny cache, vao andramana ny airplane mode.
+- Raha tsy miasa ny offline ao amin'ny APK nefa mandeha amin'ny Chrome, dia jereo raha manakana service worker na mamafa cache/storage ilay builder/WebView. Ny rakitra web irery dia tsy afaka manery APK hanohana ireo API nosakanan'ny wrapper.
 
-## Dingana 3 — Alefaso any amin'ny GitHub
-- Repo: ohatra `tahinajoela-cloud / Lilmod` (na ny repo efa misy anao)
-- Branch: `main`, dossier: `/ (root)` — apetraho ao amin'ny ROOT ny fichier rehetra, tsy ao anaty sous-dossier.
-- Settings → Pages → Source: `Deploy from a branch` → Branch: `main` / `/ (root)` → Save.
-- Andraso 1–2 min, dia sokafy: `https://tahinajoela-cloud.github.io/Lilmod/`
-
-## Dingana 4 — Fametrahana (Install) ho PWA
-- **Android / Chrome:** sokafy ny lien → menu ⋮ → **Install app / Apetraho** (na **Add to Home screen**).
-- **iPhone / Safari:** Share → **Add to Home Screen**.
-- **PC / Chrome / Edge:** kisary Install eo amin'ny address bar.
-- Aorian'ny install voalohany, sokafy indray mandeha misy internet mba ho voa-cache ny fonts, dia mandeha **offline** avy eo.
-- Fanamarihana manan-danja: ny fonts ampidinina amin'ny alalan'ny « Browse dossier » ao amin'ny Tefy dia voatahiry ao amin'ny IndexedDB — mbola ao izy ireo rehefa offline.
-
-## Raha tsy miseho ny Install
-1. HTTPS no ilaina — efa omen'ny GitHub Pages izany.
-2. Ataovy azo antoka fa ao amin'ny root ny `manifest.json`, `sw.js`, `.nojekyll`.
-3. Ao amin'ny Chrome: DevTools → Application → Manifest / Service Workers — jereo raha misy erreur.
-4. Ovay ny `VERSION` ao amin'ny `sw.js` (`lilmod-v1` → `lilmod-v2`…) isaky ny manova fichier ianao, mba havaozin'ny navigateur ny cache.
-
-## Firafitra farany tokony ho ao amin'ny GitHub
-```
-index.html  tefy.html  style.css  script.js  local-fonts.js
-manifest.json  sw.js  register-sw.js  offline.html  .nojekyll
-Logo.png  Logo-white.png  Splash.png
-icons/icon-192.png  icons/icon-512.png  icons/icon-192-maskable.png  icons/icon-512-maskable.png
-HebrewFonts/  LatinaFonts/  logos/
-```
+## Fichier PWA
+- `manifest.json` — anaran'ny app, icon ary start URL.
+- `sw.js` — precache, fallback offline, cache-on-first-use, ary fanavaozana/versioning.
+- `local-fonts.js` — fisoratana anarana sy fanamarinana fanavaozana SW; fitantanana fonts eo an-toerana.
+- `offline.html` — pejy fallback rehefa tsy mbola misy pejy app voacache.
+- `index.html`, `tefy.html`, `style.css`, `script.js`, `search.js` — app sy lesona.
+- `HebrewFonts/`, `LatinaFonts/`, `icons/` — fonts sy kisary voatahiry mialoha.

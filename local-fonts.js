@@ -1,10 +1,18 @@
 /* Lilmod LOCAL — Fonts defaults. */
 (function(){
-  // Ilaina amin'ny index.html sy tefy.html ny local-fonts.js; ampiasaina koa
-  // izy io mba hisoratra anarana foana ny Service Worker amin'ireo pejy roa.
+  // Registration is idempotent and checks for a deployed SW update whenever
+  // the app starts or returns to the foreground.
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js', { scope: './' })
+    var swRegistration;
+    navigator.serviceWorker.register('./sw.js', { scope: './', updateViaCache: 'none' })
+      .then(function(registration){
+        swRegistration=registration;
+        return registration.update().catch(function(){});
+      })
       .catch(function(err){ console.warn('SW tsy voasoratra:', err); });
+    document.addEventListener('visibilitychange',function(){
+      if(document.visibilityState==='visible' && swRegistration) swRegistration.update().catch(function(){});
+    });
   }
 
   // Tehirizina misaraka ny lokon'ny soratra hebreo sy ny lohateny hebreo.
